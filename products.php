@@ -13,12 +13,29 @@ include "db.php";
 
 $message = "";
 $sql = "SELECT id, name, category, price, is_available FROM products ORDER BY name";
-$stmt = $conn->prepare($sql);
 $result = null;
 
-if ($stmt === false) {
+try {
 
-    if ($conn->errno == 1146) {
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt === false) {
+
+        $message = "Products could not be loaded. Please check your database connection.";
+
+    } elseif ($stmt->execute()) {
+
+        $result = $stmt->get_result();
+
+    } else {
+
+        $message = "Products could not be loaded. Please try again.";
+
+    }
+
+} catch (mysqli_sql_exception $error) {
+
+    if ($error->getCode() == 1146) {
 
         $message = "The products table has not been created yet. Run the products.sql file in the simple_site database, then refresh this page.";
 
@@ -27,14 +44,6 @@ if ($stmt === false) {
         $message = "Products could not be loaded. Please check your database connection.";
 
     }
-
-} elseif ($stmt->execute()) {
-
-    $result = $stmt->get_result();
-
-} else {
-
-    $message = "Products could not be loaded. Please try again.";
 
 }
 
