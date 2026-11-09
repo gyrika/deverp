@@ -260,6 +260,52 @@ button:hover,
     line-height: 1.6;
 }
 
+.dashboard-secondary-link {
+    margin-left: 16px;
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+}
+
+.order-panel {
+    overflow: visible;
+}
+
+.order-panel .table-wrap {
+    border-radius: 18px 18px 0 0;
+}
+
+input.quantity-input {
+    width: 88px;
+    padding: 8px;
+}
+
+.checkout-summary,
+.receipt-summary {
+    padding: 24px;
+}
+
+.checkout-summary {
+    max-width: 360px;
+    margin-left: auto;
+}
+
+.checkout-summary .field {
+    margin-bottom: 16px;
+}
+
+.checkout-summary button {
+    margin-top: 8px;
+}
+
+.receipt-summary {
+    width: min(100%, 360px);
+    margin: 20px 0 0 auto;
+}
+
+.receipt-summary p:last-child {
+    margin-bottom: 0;
+}
+
 .page-heading {
     display: flex;
     margin-bottom: 28px;
@@ -411,6 +457,10 @@ tr:last-child td {
         align-items: flex-start;
         flex-direction: column;
         gap: 16px;
+    }
+
+    .topbar nav {
+        flex-wrap: wrap;
     }
 
     .page-shell {

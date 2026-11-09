@@ -65,6 +65,7 @@ try {
 
     <nav>
         <a href="dashboard.php">Dashboard</a>
+        <a href="orders.php">Orders</a>
         <a href="logout.php">Log out</a>
     </nav>
 </header>

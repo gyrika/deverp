@@ -27,6 +27,7 @@ if (!isset($_SESSION["user_email"])) {
 
     <nav>
         <a href="products.php">Products</a>
+        <a href="orders.php">Orders</a>
         <a href="logout.php">Log out</a>
     </nav>
 </header>
@@ -50,6 +51,14 @@ if (!isset($_SESSION["user_email"])) {
     </p>
 
     <a class="button-link warm" href="products.php">Open products</a>
+</section>
+
+<section class="menu-card">
+    <p class="eyebrow">Sales</p>
+    <h2>Take an order.</h2>
+    <p>Choose products, record cash received, and see the change due.</p>
+    <a class="button-link warm" href="new_order.php">New order</a>
+    <a class="dashboard-secondary-link" href="orders.php">Order history</a>
 </section>
 
 </main>

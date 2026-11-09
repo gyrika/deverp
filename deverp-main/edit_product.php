@@ -95,6 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <nav>
         <a href="products.php">Products</a>
+        <a href="orders.php">Orders</a>
         <a href="logout.php">Log out</a>
     </nav>
 </header>
