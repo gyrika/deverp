@@ -1,0 +1,15 @@
+.git
+.github
+.env
+.env.*
+.agents
+.aws
+.codex
+db.php
+!docker/db.php
+db.docker.phpnano
+seed.sql
+*.sql
+deverp-main
+compose.yaml
+README.md
