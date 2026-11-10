@@ -31,10 +31,4 @@ The Products page will show a helpful message rather than an HTTP 500 error when
 
 After logging in, use **New order** to select available products and enter the cash received. The app calculates the total and change, then saves the sale. **Order history** shows the latest 100 sales and lets you view each receipt. Product names and prices are saved with each order, so past receipts remain accurate when products change or are deleted.
 
-For an existing Docker database volume created before orders were added, run `orders.sql` once:
-
-```sh
-docker compose exec -T db sh -c 'MYSQL_PWD="$MYSQL_ROOT_PASSWORD" mysql -u root "$MYSQL_DATABASE"' < orders.sql
-```
-
-New Docker volumes get all tables from `init.sql`. MySQL runs that file only when it initializes an empty volume.
+Docker Compose runs the idempotent `init.sql` schema before starting the web app, including when an existing database volume is missing the order tables. New volumes also receive the schema during MySQL's first initialization. For manual PHP setups without Docker, run `orders.sql` in the `simple_site` database once.

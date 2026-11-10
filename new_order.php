@@ -119,7 +119,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $message = $error->getMessage();
         } catch (mysqli_sql_exception $error) {
             if ($transaction_started) $conn->rollback();
-            $message = "Order could not be saved. Check that orders.sql has been run, then try again.";
+            error_log("Order save failed: " . $error->getMessage());
+            $message = $error->getCode() == 1146
+                ? "Order tables are missing. Run orders.sql in the database or restart Docker Compose."
+                : "Order could not be saved. Check the database logs.";
         }
     }
 }

@@ -19,7 +19,10 @@ try {
         "ORDER BY o.created_at DESC, o.id DESC LIMIT 100"
     )->fetch_all(MYSQLI_ASSOC);
 } catch (mysqli_sql_exception $error) {
-    $message = "Orders could not be loaded. Run orders.sql in the database first.";
+    error_log("Order history query failed: " . $error->getMessage());
+    $message = $error->getCode() == 1146
+        ? "Order tables are missing. Run orders.sql in the database or restart Docker Compose."
+        : "Orders could not be loaded. Check the database logs.";
 }
 ?>
 <!DOCTYPE html>

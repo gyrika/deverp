@@ -1,4 +1,4 @@
--- MySQL imports this file into MYSQL_DATABASE on first database initialization.
+-- Safe to run again: Docker uses this schema for new and existing database volumes.
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
