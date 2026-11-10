@@ -16,4 +16,18 @@ jobs:
       - name: Validate Compose configuration
         run: docker compose --env-file .env.example config -q
       - name: Build PHP image
-        run: docker build -t cheesy-bees:test .
+        run: docker build -t cheesy-bees:local .
+      - name: Start stack and check login page
+        run: |
+          docker compose --env-file .env.example up -d
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:8080/index.php >/dev/null 2>&1; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker compose --env-file .env.example logs
+          exit 1
+      - name: Stop test stack
+        if: always()
+        run: docker compose --env-file .env.example down -v
